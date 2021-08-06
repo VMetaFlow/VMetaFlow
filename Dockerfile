@@ -15,7 +15,7 @@ WORKDIR /app
 COPY package.json /app/package.json
 COPY auth/package.json /app/auth/package.json
 RUN npm install && cd auth && npm install
-
+RUN pip3 install umap-learn
 COPY . /app
 RUN cd auth && npm run-script build
 

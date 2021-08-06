@@ -42,3 +42,8 @@ source_code = ('\t'.join(('\n' + code.lstrip()).splitlines(True)))
 dh = DataHandler(dataList, schemaList)
 
 processor.process(input, state, dh, code)
+
+with open(Path(job['resultPath']), 'w') as resultFile:
+    del state['children']
+    del state['parents']
+    json.dump(dict(changes=dh.changes, state=state), resultFile)

@@ -10,13 +10,17 @@ module.exports = function (passport, sessionManager) {
     var path = require('path')
     const uploads = path.join(__dirname, '../uploads');
     var baseAccountFolder = path.join(uploads, 'base_account');
-    const filesPath = [path.join(uploads, 'DR.app'), path.join(uploads, 'PCP.app'), path.join(uploads, 'RegNet.app')]
+    const filesPath = [path.join(uploads, 'DR.app'), path.join(uploads, 'PCP.app'), path.join(uploads, 'RegNet.app'), path.join(uploads, 'DMaps.app')]
     const baseAccountTemplate = path.join(uploads, 'account_template.db')
     const baseProperty = {
         "property": "propSelection", "icon": "fa fa-bullseye", "iconUnicode": "", "name": "Property selection",
         "structure": {"0": {"id": 0, "type": "0", "title": "propSelection", "children": [], "root": true, "desc": ""}},
         "translatedStructure": [{"path": [], "type": "0"}]
     }
+
+    const meshProperty = {"property":"mesh","icon":"fa fa-cubes","iconUnicode":"","name":"mesh",
+        "structure":{"0":{"id":0,"type":"0","title":"mesh","children":[],"root":true,"desc":""}},
+        "translatedStructure":[{"path":[],"type":"0"}]}
 
     function isNotAuthenticated(req, res, next) {
         if (!req.user) {
@@ -68,6 +72,12 @@ module.exports = function (passport, sessionManager) {
                 username: username,
                 property: baseProperty.property,
             }, baseProperty, {upsert: true, new: true, setDefaultsOnInsert: true}))
+
+            dbSaves.push(Connection.findOneAndUpdate({
+                username: username,
+                property: meshProperty.property,
+            }, meshProperty, {upsert: true, new: true, setDefaultsOnInsert: true}))
+
 
             Promise.all(dbSaves).then(() => {
                 passport.authenticate('local')(req, res, function () {
