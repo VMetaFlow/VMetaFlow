@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var dataDB = mongoose.createConnection("mongodb://localhost/bpexplorer_data",{useMongoClient: true});
+var dataDB = mongoose.createConnection("mongodb://localhost/vmetaflow_data");
 
 var Session = new Schema({
     data: String,

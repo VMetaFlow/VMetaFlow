@@ -12,14 +12,33 @@ VMetaFlow is a graphical meta-framework to design interactive and coordinated vi
 2. From the project's root directory, build the docker image:
    > docker build -t vmetaflow .
 3. Create the docker container from the previous image:
-   > docker create --name vmetaflow -p 80:80 vmetaflow
+   > docker create --name vmetaflow -p 443:443 vmetaflow
 ## Running
 In order to start the app use:
 > docker start -i vmetaflow
 
-Now the tool will be available at `http://localhost:80`
+Now the tool will be available at `https://localhost:443`
 
 Web Browser extensions may interfere in VMetaFlow's performance or functionality. If you have problems, please disable any extension that may interfere with the web-app.
 
 To stop VMetaFlow use:
 > docker stop vmetaflow
+
+
+## Research
+### Citation
+```
+@ARTICLE{Cosmin-Toader2022,
+  author={Cosmin-Toader, Nicusor and Trincado-Alonso, Fernando and Pastor, Luis and Garcia-Lorenzo, Marcos},
+  journal={IEEE Access}, 
+  title={VMetaFlow: A Meta-Framework for Integrating Visualizations in Coordinated View Applications}, 
+  year={2022},
+  volume={10},
+  number={},
+  pages={94545-94559},
+  doi={10.1109/ACCESS.2022.3202543},
+  ISSN={2169-3536},
+  month={},}
+```
+### Funding
+The research leading to these results has received funding from the following entities: The European Union's Horizon 2020 Research and Innovation Programme under grants agreement no. 785907 (Human Brain Project SGA2) and 945539 (Human Brain Project SGA3), the Spanish Government under grants: PID2020-113013RB-C21(MEDAVI) and FPU18/05304.

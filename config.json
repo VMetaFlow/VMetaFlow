@@ -5,7 +5,7 @@
     "host": "127.0.0.1",
     "port": "27017",
     "db": "session",
-    "url": "mongodb://localhost:27017/bpexplorer_sessions"
+    "url": "mongodb://localhost:27017/vmetaflow_sessions"
   },
   "rServerPort": 8888,
   "pythonServerPort": 9999,

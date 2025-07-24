@@ -12,7 +12,7 @@ username = args[1]
 jobId = args[2]
 
 client = MongoClient()
-db = client.bpexplorer_users
+db = client.vmetaflow_users
 jobs = db.jobs
 
 job = jobs.find_one({"username": username, "id": jobId})

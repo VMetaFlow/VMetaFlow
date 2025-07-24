@@ -3,6 +3,8 @@ uploads/*
 !uploads/DR.app
 !uploads/PCP.app
 !uploads/RegNet.app
+!uploads/LSGO.app
+!uploads/DMaps.app
 node_modules/
 auth/node_modules/
 auth/js/bundle.js

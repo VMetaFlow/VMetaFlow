@@ -10,7 +10,8 @@ module.exports = function (passport, sessionManager) {
     var path = require('path')
     const uploads = path.join(__dirname, '../uploads');
     var baseAccountFolder = path.join(uploads, 'base_account');
-    const filesPath = [path.join(uploads, 'DR.app'), path.join(uploads, 'PCP.app'), path.join(uploads, 'RegNet.app'), path.join(uploads, 'DMaps.app')]
+    const filesPath = [path.join(uploads, 'DR.app'), path.join(uploads, 'PCP.app'), path.join(uploads, 'RegNet.app'), path.join(uploads, 'DMaps.app'),
+					   path.join(uploads, 'LSGO.app')]
     const baseAccountTemplate = path.join(uploads, 'account_template.db')
     const baseProperty = {
         "property": "propSelection", "icon": "fa fa-bullseye", "iconUnicode": "", "name": "Property selection",

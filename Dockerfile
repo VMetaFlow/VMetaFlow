@@ -15,12 +15,16 @@ WORKDIR /app
 COPY package.json /app/package.json
 COPY auth/package.json /app/auth/package.json
 RUN npm install && cd auth && npm install
-RUN pip3 install umap-learn
+RUN pip3 install umap-learn==0.5.4
 COPY . /app
 RUN cd auth && npm run-script build
 
-RUN a2enmod proxy proxy_http proxy_wstunnel rewrite
+RUN a2enmod proxy proxy_http proxy_wstunnel rewrite ssl
 COPY apache_conf/apache.conf /etc/apache2/sites-available/000-default.conf
+RUN openssl req -x509 -newkey rsa:4096 -nodes -sha256 -days 3650 \
+  -keyout /etc/apache2/apache.key -out /etc/apache2/apache.crt \
+  -subj "/C=ES/O=Local/CN=localhost" \
+  -addext "subjectAltName=DNS:localhost,IP:127.0.0.1,IP:::1"
 
-EXPOSE 80
+EXPOSE 443
 CMD bash start.sh

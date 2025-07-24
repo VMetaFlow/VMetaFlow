@@ -9,7 +9,7 @@ data <- list()
 changes <- list()
 
 
-jobs = mongo(collection = "jobs", db = "bpexplorer_users")
+jobs = mongo(collection = "jobs", db = "vmetaflow_users")
 job = jobs$find(paste('{"username":"', username, '","id":"', jobId, '"}', sep =
 ""))
 

@@ -95,8 +95,8 @@ class CustomVisualizationManager {
                     bundleSchema.previews.push(rPath);
                     archive.file(path.join(previewPath, filename), {name: rPath});
                 });
-
-                archive.append(JSON.stringify(bundleSchema), {name: "schema.json"});
+                let bundleString = JSON.stringify(bundleSchema);
+                archive.append(bundleString, {name: "schema.json"});
 
                 Dependency.find({username: username}).select({
                     username: 0,
@@ -137,14 +137,16 @@ class CustomVisualizationManager {
         var folderDescriptor = {previews: [], dependencies: [], cards: []};
         let schema = JSON.parse(fs.readFileSync(path.join(folderPath, "schema.json")))
         schema.previews.forEach(function (previewPath) {
+			previewPath = previewPath.replace(/\\/g, '/'); 
             folderDescriptor.previews.push(previewPath);
             fs.renameSync(path.join(folderPath, previewPath), path.join(self.absoluteBasePath, 'uploads', username, 'preview', path.basename(previewPath)));
         });
 
         schema.dependencies.forEach(function (dependencyPath) {
+			dependencyPath = dependencyPath.replace(/\\/g, '/'); 
             fs.renameSync(path.join(folderPath, dependencyPath), path.join(self.absoluteBasePath, 'uploads', username, 'lib', path.basename(dependencyPath)));
         });
-
+		schema.dependenciesSchema = schema.dependenciesSchema.replace(/\\/g, '/'); 
         let dependenciesSchema = JSON.parse(fs.readFileSync(path.join(folderPath, schema.dependenciesSchema)));
         //TODO: unique ids handling
         dependenciesSchema.forEach(function (dependencySchema) {
